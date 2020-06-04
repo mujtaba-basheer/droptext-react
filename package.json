@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html src/error.html",
     "build": "parcel build src/index.html src/error.html",
-    "upload": "aws s3 cp dist s3://droptext --recursive",
+    "upload": "aws s3 cp dist s3://droptext/ --recursive --acl public-read",
     "git_live": "git checkout prod && git merge master && git push origin prod",
     "deploy": "npm run build && npm run git_live && npm run upload"
   },
