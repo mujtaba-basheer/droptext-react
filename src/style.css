@@ -24,7 +24,7 @@ h1 {
 
 textarea {
     width: 100%;
-    font-size: 100%;
+    font-size: 75%;
 }
 
 .txt-area {
@@ -74,7 +74,7 @@ button {
 .msg-box {
     width: 100%;
     margin: 0 auto;
-    background-color: #fff; 
+    background-color: #fff;
     margin-top: -2%;
 }
 

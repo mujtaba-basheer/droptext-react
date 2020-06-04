@@ -5,6 +5,7 @@ import axios from "axios";
 const App = () => {
     const [text, setText] = useState("");
     const [status, setStatus] = useState("...");
+    const [fetch, setFetch] = useState(false);
     const url = "https://d2z21h1z91.execute-api.us-east-1.amazonaws.com/prod";
 
     useEffect(() => {
@@ -24,14 +25,24 @@ const App = () => {
                 console.error(err);
                 setStatus("Oops! There was some eror in loading the text.");
             });
-    }, []);
+    }, [setFetch, fetch]);
 
     const copyText = () => {
         const textEl = document.getElementById("text");
-        textEl.focus();
         textEl.select();
         document.execCommand("copy");
         setStatus("Text copied to clipboaard.");
+    };
+
+    const clearText = () => {
+        setText("");
+        setStatus("Text cleared successfully.");
+    };
+
+    const fetchText = () => {
+        setStatus("...");
+        setFetch(true);
+        setTimeout(() => setStatus("Text fetched successfully."), 500);
     };
 
     const saveText = () => {
@@ -56,7 +67,7 @@ const App = () => {
     return (
         <div>
             <div className="heading">
-                <h1>Droptext</h1>
+                <h1 onClick={clearText}>Droptext</h1>
             </div>
             <div className="txt-area">
                 <textarea
@@ -73,7 +84,7 @@ const App = () => {
                 <button className="copy-btn" onClick={() => copyText()}>
                     Copy
                 </button>
-                <div className="msg-box">
+                <div className="msg-box" onClick={() => fetchText()}>
                     <p>{status}</p>
                 </div>
             </div>
